@@ -28,3 +28,7 @@ var clothingItems = function(type,price,stock){
 	this.stock = stock;
 };
 
+var exit = function(){
+	console.log("Thank you for visiting!\nGoodbye!");
+	process.exit();
+};
