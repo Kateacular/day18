@@ -15,7 +15,7 @@
 
 
 
-
+var sget = require("sget");
 
 
 var inventory = [];
@@ -32,3 +32,43 @@ var exit = function(){
 	console.log("Thank you for visiting!\nGoodbye!");
 	process.exit();
 };
+
+var addItem = function() {
+	var addedEntry = sget().trim();
+};
+
+var deleteItem = function() {
+	var deletedEntry = sget().trim();
+};
+
+var searchItem = function() {
+	var lookupEntry = sget().trim();
+};
+
+var editItem = function() {
+	var alterEntry = sget().trim();
+};
+
+
+var showMenu = function(){
+	console.log("\nWelcome to the Ortyki Boutique!\n");
+	var selectMenuOption = sget("What would you like to do?\n\nSelect 1 to Add and Item.\n\nSelect 2 to Delete an Item.\n\nSelect 3 to Search for an Item.\n\nSelect 5 to Exit.").trim();
+		if(selectedOption == 1){
+			addItem();
+		}else if (selectedOption == 2){
+			deleteItem();
+		}else if (selectedOption == 3){
+			searchItem();	
+		}else if (selectedOption == 4){
+			deleteItem();
+		}else if (selectedOption == 5){
+			deleteItem();
+		}else if (selectedOption == 6){
+			deleteItem();
+		}else {
+			console.log("Invalid selection. Try again.");
+			showMenu();
+		}
+};
+
+
