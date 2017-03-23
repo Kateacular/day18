@@ -30,6 +30,17 @@ var clothingItems = function(type,color,price,stock,notes){
 	this.notes = notes;
 };
 
+var populateArray = function() {
+  var clothing1 = new clothingItems("Pants","Orange","145","27","wash on cold");
+  var clothing2 = new clothingItems("Pants","Blue","115","14","itchy. Not recommended.");
+  var clothing3 = new clothingItems("Hat","Violet","15","7","wool/poly blend");
+  inventory.push(clothing1);
+  inventory.push(clothing2);
+  inventory.push(clothing3);
+};
+
+
+
 var exit = function(){
 	console.log("Thank you for visiting!\nGoodbye!");
 	process.exit();
@@ -55,7 +66,7 @@ var addItem = function() {
 var deleteItem = function() {
 	var i = 1;
 	inventory.forEach(function(currentClothing) {
-		console.log(i + ":  Type: " + currentClothing.type + "\nColor: " + currentClothing.color + ", $" + currentClothing.price + "\nQuantity: " + currentClothing.stock + "\nNotes: " + currentClothing.notes + " ");
+		console.log(i + ":  Type: " + currentClothing.type + "\nColor: " + currentClothing.color + ", $" + currentClothing.price + "\nQuantity: " + currentClothing.stock + "\nNotes: " + currentClothing.notes + " \n");
 		i++;
 	});
 
@@ -102,7 +113,7 @@ var showMenu = function(){
 };
 
 var run = function(){
-
+	populateArray();
 	showMenu();
 };
 
