@@ -45,14 +45,18 @@ var searchItem = function() {
 	var lookupEntry = sget().trim();
 };
 
-var editItem = function() {
+var editQuantity = function() {
+	var alterEntry = sget().trim();
+};
+
+var editDescription = function() {
 	var alterEntry = sget().trim();
 };
 
 
 var showMenu = function(){
 	console.log("\nWelcome to the Ortyki Boutique!\n");
-	var selectMenuOption = sget("What would you like to do?\n\nSelect 1 to Add and Item.\n\nSelect 2 to Delete an Item.\n\nSelect 3 to Search for an Item.\n\nSelect 5 to Exit.").trim();
+	var selectedOption = sget("What would you like to do?\n\nSelect 1 to Add and Item.\n\nSelect 2 to Delete an Item.\n\nSelect 3 to Search for an Item.\n\nSelect 4 to Edit Item Quantity.\n\nSelect 5 to edit Item Descriptions.\n\nSelect 6 to Exit.").trim();
 		if(selectedOption == 1){
 			addItem();
 		}else if (selectedOption == 2){
@@ -60,15 +64,22 @@ var showMenu = function(){
 		}else if (selectedOption == 3){
 			searchItem();	
 		}else if (selectedOption == 4){
-			deleteItem();
+			editQuantity();
 		}else if (selectedOption == 5){
-			deleteItem();
+			editDescription();
 		}else if (selectedOption == 6){
-			deleteItem();
+			exit();
 		}else {
 			console.log("Invalid selection. Try again.");
 			showMenu();
 		}
 };
+
+var run = function(){
+
+	showMenu();
+};
+
+run();
 
 
