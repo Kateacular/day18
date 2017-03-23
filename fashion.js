@@ -22,10 +22,12 @@ var inventory = [];
 
 
 
-var clothingItems = function(type,price,stock){
+var clothingItems = function(type,color,price,stock,notes){
 	this.type = type;
+	this.color = color;
 	this.price = price;
 	this.stock = stock;
+	this.notes = notes;
 };
 
 var exit = function(){
@@ -34,11 +36,35 @@ var exit = function(){
 };
 
 var addItem = function() {
-	var addedEntry = sget().trim();
+	var clothingType = sget("What type of garment is this? (i.e. 'Pants')").trim();
+	var clothingColor = sget ("What color is this garment?").trim();
+	var clothingPrice = sget("What is the price of this item?").trim();
+	var clothingStock = sget("How many of this item are in stock?").trim();
+	var clothingNotes = sget("Any notes about this garment?").trim();
+	var newClothing = new clothingItems(clothingType, clothingColor, clothingPrice, clothingStock, clothingNotes);
+	inventory.forEach(function(currentClothing) {
+    	if (clothingType == currentClothing.type && clothingColor == currentClothing.color) {
+            console.log("You already have that combination.\nTry altering the inventory count instead of adding the same item.");
+            showMenu();
+            } 
+    });
+    inventory.push(newClothing);
+    showMenu();  
 };
 
 var deleteItem = function() {
-	var deletedEntry = sget().trim();
+	var i = 1;
+	inventory.forEach(function(currentClothing) {
+		console.log(i + ":  Type: " + currentClothing.type + "\nColor: " + currentClothing.color + ", $" + currentClothing.price + "\nQuantity: " + currentClothing.stock + "\nNotes: " + currentClothing.notes + " ");
+		i++;
+	});
+
+	var removeClothing = sget("Select the number of the clothing item to remove.").trim();
+
+	var indexOfClothingToRemove = removeClothing-1;
+	inventory.splice(indexOfClothingToRemove, 1);
+	showMenu();
+
 };
 
 var searchItem = function() {
@@ -56,7 +82,7 @@ var editDescription = function() {
 
 var showMenu = function(){
 	console.log("\nWelcome to the Ortyki Boutique!\n");
-	var selectedOption = sget("What would you like to do?\n\nSelect 1 to Add and Item.\n\nSelect 2 to Delete an Item.\n\nSelect 3 to Search for an Item.\n\nSelect 4 to Edit Item Quantity.\n\nSelect 5 to edit Item Descriptions.\n\nSelect 6 to Exit.").trim();
+	var selectedOption = sget("What would you like to do?\n\nSelect 1 to Add an Item.\n\nSelect 2 to Delete an Item.\n\nSelect 3 to Search for an Item.\n\nSelect 4 to Edit Item Quantity.\n\nSelect 5 to edit Item Descriptions.\n\nSelect 6 to Exit.").trim();
 		if(selectedOption == 1){
 			addItem();
 		}else if (selectedOption == 2){
